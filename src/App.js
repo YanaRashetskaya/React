@@ -1,18 +1,40 @@
 import React from 'react';
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
 import styles from './App.css';
-import AppHeader from './components/AppHeader';
-import AppFooter from './components/AppFooter';
-import AppMain from './components/AppMain';
-import Flashcard from './components/Flashcard';
+import './assets/style/styles.scss'
+import AppHeader from '../src/components/Header/AppHeader';
+import AppFooter from '../src/components/Footer/AppFooter';
+import AppMain from '../src/components/MainPage/AppMain';
+import CardSlider from './components/CardSlider/CardSlider';
+import NotFound from '../src/components/NotFound/Error';
+import EditableTable from './components/WordList/EditableTable';
+
+
 
 
 function App() {
   return (
+    <BrowserRouter>
     <div className={styles.App}>
-    <AppHeader></AppHeader>
-    <AppMain><Flashcard/></AppMain>
-    <AppFooter></AppFooter>
+      <nav className={styles.nav}>
+    <AppHeader/>
+    </nav>
+    <main  className={styles.main}>
+    <Routes>
+              <Route path="/main" element={<AppMain/>}/>
+              <Route path="/game" element={<CardSlider/>}/>
+              <Route path="/words" element={<EditableTable/>}/>
+              <Route exact path="/"element={<AppMain />}/>
+              <Route element={<NotFound/>}/>
+    </Routes>
+    </main> 
+    <footer className={styles.footer}><AppFooter/></footer>
     </div>
+    </BrowserRouter>
   );
 }
 

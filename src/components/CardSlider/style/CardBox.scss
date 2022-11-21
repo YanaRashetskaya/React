@@ -1,0 +1,77 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700);
+@import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic);
+
+
+
+.card__container
+{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    .card__box{
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      width: 19%;
+      padding: 15px;
+      color: #1111;
+      margin: 15px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 12px 3px rgba(103, 99, 99, 0.7);
+      text-shadow: 0 1px 0 #615d5d;
+      border: 2px solid rgb(245, 237, 237);
+      word-wrap:inherit;
+      overflow:hidden;
+    }
+
+}
+.btnWrapper {
+
+      display: flex;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      justify-content: space-between;
+
+.btn {
+      cursor: pointer;
+      margin: 6px 3px;
+      font-size: 1em;
+      padding: 8px 14px 6px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      border-radius: 5px;
+      text-shadow: 1px 1px 1px #00000024;
+      text-transform: uppercase;
+      box-shadow: 0 4px 9px 0 #00000033;
+      color: #343a40;
+      background-color: transparent;
+      background-image: none;
+      border-color: #343a40;
+      display: inline-block;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      user-select: none;
+      border: 1px solid transparent;
+      line-height: 1.5;
+    }
+.btn:hover {
+      color: #fff;
+      background-color: #57b894;
+      border-color: none;
+    }
+
+.btn:focus {
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem #343a4080;
+    }
+    }
+
+.endCard{
+display: flex;
+align-items: center;
+flex-direction: column;
+font-size: large;
+margin: 20px;
+}

@@ -1,0 +1,129 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700);
+@import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic);
+nav {
+  display: flex;
+  background: #3fa46a;
+  padding: 1.5em;
+  text-align: center;
+  font-family: Raleway;
+}
+nav .link {
+  transition: 0.3s ease;
+  color: #ffffff;
+  font-size: 2em;
+  text-decoration: none;
+  padding: 1em 0;
+  margin: 0 1em;
+}
+nav .link:hover {
+  border-top: 4px solid #ffffff;
+  border-bottom: 4px solid #ffffff;
+  padding: 6px 0;
+}
+
+.main {
+  background-color: #CED9DC;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 5%;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.card .card_word {
+  display: flex;
+  font-size: 2rem;
+  color: #111;
+}
+
+.card_btn {
+  margin: 1em;
+  padding: 5%;
+  width: 10em;
+  border: none;
+  font-size: 1em;
+  border-radius: 8px;
+  background-color: #57b894;
+}
+.card_btn:hover {
+  background-color: #309845;
+}
+.card_btn:active {
+  background-color: #4ebf6c;
+}
+
+.card__container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.card__container .card__box {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 19%;
+  padding: 15px;
+  color: rgba(17, 17, 17, 0.0666666667);
+  margin: 15px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 12px 3px rgba(103, 99, 99, 0.7);
+  text-shadow: 0 1px 0 #615d5d;
+  border: 2px solid rgb(245, 237, 237);
+  word-wrap: inherit;
+  overflow: hidden;
+}
+
+.btnWrapper {
+  display: flex;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: space-between;
+}
+.btnWrapper .btn {
+  cursor: pointer;
+  margin: 6px 3px;
+  font-size: 1em;
+  padding: 8px 14px 6px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  border-radius: 5px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1411764706);
+  text-transform: uppercase;
+  box-shadow: 0 4px 9px 0 rgba(0, 0, 0, 0.2);
+  color: #343a40;
+  background-color: transparent;
+  background-image: none;
+  border-color: #343a40;
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  border: 1px solid transparent;
+  line-height: 1.5;
+}
+.btnWrapper .btn:hover {
+  color: #fff;
+  background-color: #57b894;
+  border-color: none;
+}
+.btnWrapper .btn:focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(52, 58, 64, 0.5019607843);
+}
+
+.endCard {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-size: large;
+  margin: 20px;
+}/*# sourceMappingURL=styles.css.map */
