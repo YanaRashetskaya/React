@@ -1,9 +1,18 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway);
 
+.header{
+    width: 100%;
+    background: #3fa46a;
+    z-index: 100;
+}
+.header_fixed {
+    position: fixed;
+    left: 0;
+    top: 0;
+}
 
 nav{
     display: flex;
-    background: #3fa46a;
     padding: 1.5em;
     text-align: center;
     font-family: Raleway;

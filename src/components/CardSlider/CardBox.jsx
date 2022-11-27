@@ -1,5 +1,5 @@
 
-import styles from './style/CardBox.css';
+import styles from './CardBox.module.scss';
 
 export default function CardBox(props) {
     return (
@@ -11,9 +11,9 @@ export default function CardBox(props) {
                     {props.number} / {props.total}
                 </p>
             </div>
-            <div className="btnWrapper">
-                <button className="btn" alt="left" onClick={props.showPrev}>Back</button>
-                <button className="btn" alt="right" onClick={props.showNext}>Next</button>
+            <div className={styles.btnWrapper}>
+                <button className={styles.btn} alt="left" onClick={props.showPrev}>Back</button>
+                <button className={styles.btn} alt="right" onClick={props.showNext}>Next</button>
             </div>
         </div >
     )

@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './style/Flashcard.css'
+import styles from './Flashcard.module.scss'
 import CardFilling from './CardFilling';
 import words from '../../data';
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import styles from './style/Flashcard.css'
+import styles from './Flashcard.module.scss'
 
 const ShowWord = (props) => {
     const ref = useRef();

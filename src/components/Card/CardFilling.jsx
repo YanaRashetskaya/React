@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import ShowWord from './ShowWord';
-import styles from './style/Flashcard.css'
+import styles from './Flashcard.module.scss'
 
 
 

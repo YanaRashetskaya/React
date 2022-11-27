@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './style/AppMain.css'
+import styles from './AppMain.module.scss'
 import EditableTable from '../WordList/EditableTable';
 
 

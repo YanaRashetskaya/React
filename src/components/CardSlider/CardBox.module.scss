@@ -25,14 +25,13 @@
     }
 
 }
-.btnWrapper {
 
+.btnWrapper {
       display: flex;
       max-width: 500px;
       margin-left: auto;
       margin-right: auto;
       justify-content: space-between;
-
 .btn {
       cursor: pointer;
       margin: 6px 3px;
@@ -69,9 +68,14 @@
     }
 
 .endCard{
+  background-color: #57b894;
 display: flex;
 align-items: center;
 flex-direction: column;
 font-size: large;
-margin: 20px;
+margin: 30px;
+padding: 20px;
+box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+border-radius: 5px;
+max-width: 500px;
 }

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import CardBox from './CardBox';
 import CardFilling from '../Card/CardFilling';
 import words from '../../data';
-import styles from './style/CardBox.css';
+import styles from './CardBox.module.scss';
 
 
 

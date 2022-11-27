@@ -1,0 +1,12 @@
+
+
+.found{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    .found__message{
+        text-decoration: none;
+        font-size: 2em;
+        font-family: fantasy;
+    }
+}
