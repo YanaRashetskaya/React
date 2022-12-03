@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import CardBox from './CardBox';
-import CardFilling from '../Card/CardFilling';
-import words from '../../data';
 import styles from './CardBox.module.scss';
+import CardFilling from '../Card/CardFilling';
 
 
 
-export default function CardSlider(props) {
+const CardSlider = ({ wordsState, createData }) => {
     const [currentItem, setPosition] = useState(0);
     const [learnedWordsTotal, setLearnedWordsTotal] = useState(0);
     const [pressed, setPressed] = useState(false);
@@ -28,7 +27,7 @@ export default function CardSlider(props) {
             setPosition(currentItem - 1);
     }
 
-    if (currentItem >= words.length) {
+    if (currentItem >= wordsState.length) {
         return (
             <div className={styles.endCard}>
                 <div>Поздравляем,Вы изучили все слова!</div>
@@ -41,17 +40,19 @@ export default function CardSlider(props) {
                 showPrev={showPrev}
                 showNext={showNext}
                 number={currentItem + 1}
-                total={words.length}
+                total={wordsState.length}
                 learned={learnedWordsTotal}
-                children={<CardFilling
+                children={wordsState.map((word) => <CardFilling
                     pressed={pressed}
                     show={handleChange}
-                    id={words[currentItem].id}
-                    english={words[currentItem].english}
-                    transcription={words[currentItem].transcription}
-                    russian={words[currentItem].russian}
-                    tags={words[currentItem].tags} />}>
+                    id={word[currentItem].id}
+                    english={word[currentItem].english}
+                    transcription={word[currentItem].transcription}
+                    russian={word[currentItem].russian}
+                    tags={word[currentItem].tags} />)}>
             </CardBox>
         )
     }
 }
+
+export default CardSlider;

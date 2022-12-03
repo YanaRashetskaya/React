@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   BrowserRouter,
   Routes,
@@ -11,23 +11,30 @@ import AppMain from '../src/components/MainPage/AppMain';
 import CardSlider from './components/CardSlider/CardSlider';
 import NotFound from './components/NotFound/NotFound';
 import EditableTable from './components/WordList/EditableTable';
+import words from './data';
 
 
 
 
 
 function App() {
+  const [wordsState, setWords]= useState(words);
+  const wordsIndex = wordsState.findIndex(word => word.id === newWord.id)
+if (wordsIndex){
+    setWords( value: [...wordsState.slice(0, wordsIndex), newWord, ...wordsState.slice(wordsIndex +1)])   
+  }
+else {
+    setWords(value: [...wordsState, newWord])
+}
   return (
     <BrowserRouter>
     <div className={styles.App}>
-      <nav className={styles.nav}>
     <AppHeader/>
-    </nav>
     <main  className={styles.main}>
     <Routes>
               <Route path="/main" element={<AppMain/>}/>
-              <Route path="/game" element={<CardSlider/>}/>
-              <Route path="/words" element={<EditableTable/>}/>
+              <Route path="/game" element={<CardSlider wordsState={wordsState} createData={createData}/>}/>
+              <Route path="/words" element={<EditableTable wordsState={wordsState} createData={createData}/>}/>
               <Route exact path="/"element={<AppMain />}/>
               <Route path="*" element={<NotFound/>}/>
     </Routes>

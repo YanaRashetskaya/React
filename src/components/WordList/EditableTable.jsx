@@ -8,7 +8,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import React, { useState } from 'react';
-import words from '../../data';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Fab from '@mui/material/Fab';
@@ -42,11 +41,11 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 
 
-export default function EditableTable() {
+const EditableTable = ({ wordsState, createData }) => {
 
     const [isEditMode, setIsEditMode] = useState(false);
     const [rowIDToEdit, setRowIDToEdit] = useState(undefined);
-    const [rowsState, setRowsState] = useState(words);
+    const [rowsState, setRowsState] = useState(wordsState);
     const [editedRow, setEditedRow] = useState();
 
     const handleEdit = (rowID) => {
@@ -63,10 +62,10 @@ export default function EditableTable() {
     }
 
     const handleOnChangeField = (e, rowID) => {
-        const { name: StyledTableCell, value } = e.target;
+        const { name: fieldName, value } = e.target;
         setEditedRow({
             id: rowID,
-            [StyledTableCell]: value
+            [fieldName]: value
         })
     }
 
@@ -189,3 +188,5 @@ export default function EditableTable() {
         </TableContainer >
     );
 }
+
+export default EditableTable;

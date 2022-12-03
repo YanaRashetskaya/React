@@ -1,21 +1,16 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway);
 
-.header{
+.navbar{ 
     width: 100%;
     background: #3fa46a;
-    z-index: 100;
-}
-.header_fixed {
-    position: fixed;
-    left: 0;
-    top: 0;
-}
-
-nav{
     display: flex;
     padding: 1.5em;
     text-align: center;
     font-family: Raleway;
+}
+.navbar_hidden {
+        top: -50px;
+}
 
 .link{
     transition: 0.3s ease;
@@ -30,5 +25,5 @@ nav{
   border-bottom: 4px solid #ffffff;
   padding: 6px 0; 
 }
-    }
+
 
