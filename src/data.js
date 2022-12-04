@@ -17,5 +17,5 @@ let wordsJSON = `[
     ]
     `;
     
-let words = JSON.parse(wordsJSON);
-export default words;
+let initialWords = JSON.parse(wordsJSON);
+export default initialWords;

@@ -1,3 +1,6 @@
 .App {
   display: grid;
 }
+.main {
+  padding-top: 208px;
+}

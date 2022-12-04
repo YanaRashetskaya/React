@@ -3,7 +3,8 @@
 .header{
     width: 100%;
     background: #3fa46a;
-    z-index: 100;
+    z-index: 2000;
+    position: fixed;
 }
 .header_fixed {
     position: fixed;

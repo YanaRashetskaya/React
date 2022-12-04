@@ -8,15 +8,12 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import React, { useState } from 'react';
-import words from '../../data';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Fab from '@mui/material/Fab';
 import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 import TextField from '@mui/material/TextField';
 import CancelIcon from '@mui/icons-material/Cancel';
-
-
 
 
 
@@ -42,11 +39,11 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 
 
-export default function EditableTable() {
+export default function EditableTable({words, editWords}) {
 
     const [isEditMode, setIsEditMode] = useState(false);
     const [rowIDToEdit, setRowIDToEdit] = useState(undefined);
-    const [rowsState, setRowsState] = useState(words);
+    // const [rowsState, setRowsState] = useState(words);
     const [editedRow, setEditedRow] = useState();
 
     const handleEdit = (rowID) => {
@@ -56,10 +53,10 @@ export default function EditableTable() {
     }
 
     const handleRemoveRow = (rowID) => {
-        const newData = rowsState.filter(row => {
+        const newData = words.filter(row => {
             return row.id !== rowID ? row : null
         });
-        setRowsState(newData);
+        editWords(newData);
     }
 
     const handleOnChangeField = (e, rowID) => {
@@ -78,7 +75,7 @@ export default function EditableTable() {
     const handleSaveRowChanges = () => {
         setTimeout(() => {
             setIsEditMode(false);
-            const newData = rowsState.map(row => {
+            const newData = words.map(row => {
                 if (row.id === editedRow.id) {
                     if (editedRow.english) row.english = editedRow.english;
                     if (editedRow.transcription) row.transcription = editedRow.transcription;
@@ -87,7 +84,7 @@ export default function EditableTable() {
                 }
                 return row;
             })
-            setRowsState(newData);
+            editWords(newData);
             setEditedRow(undefined)
         }, 1000)
     }
@@ -107,7 +104,7 @@ export default function EditableTable() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rowsState.map((row) => (
+                    {words.map((row) => (
                         <StyledTableRow key={row.id}>
 
                             <StyledTableCell component="th" scope="row">
