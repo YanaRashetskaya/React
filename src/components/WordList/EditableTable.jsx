@@ -1,19 +1,14 @@
 
 import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import {
+    Paper, Box, Table, TableContainer, Container,
+    TableBody, TableCell, TableRow, TableHead,
+    TableFooter, TablePagination, TextField
+} from "@mui/material";
+import { tableCellClasses } from '@mui/material/TableCell';
 import React, { useState } from 'react';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import Fab from '@mui/material/Fab';
-import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
-import TextField from '@mui/material/TextField';
-import CancelIcon from '@mui/icons-material/Cancel';
+import TableRowComp from './TableRow';
+
 
 
 
@@ -29,163 +24,101 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
 }));
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-    '&:nth-of-type(odd)': {
-        backgroundColor: theme.palette.action.hover,
-    },
-    // hide last border
-    '&:last-child td, &:last-child th': {
-        border: 0,
-    },
-}));
 
 
+const EditableTable = ({ words, createOrUpdate, deleteWord, TablePaginationActions }) => {
 
-const EditableTable = ({ wordsState, createData }) => {
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(5);
 
-    const [isEditMode, setIsEditMode] = useState(false);
-    const [rowIDToEdit, setRowIDToEdit] = useState(undefined);
-    const [rowsState, setRowsState] = useState(wordsState);
-    const [editedRow, setEditedRow] = useState();
+    const [value, setValue] = useState('');
+    const [searchParam] = useState(["russian", "english"]);
 
-    const handleEdit = (rowID) => {
-        setIsEditMode(true);
-        setEditedRow(undefined);
-        setRowIDToEdit(rowID);
-    }
+    const emptyRows =
+        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - words.length) : 0;
 
-    const handleRemoveRow = (rowID) => {
-        const newData = rowsState.filter(row => {
-            return row.id !== rowID ? row : null
+    const handleChangePage = (_event, newPage) => {
+        setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = (event) => {
+        setRowsPerPage(parseInt(event.target.value, 5));
+        setPage(0);
+    };
+
+    function search(words) {
+        return words.filter((word) => {
+            return searchParam.some((newWord) => {
+                return (
+                    word[newWord]
+                        .toString()
+                        .toLowerCase()
+                        .indexOf(value.toLowerCase()) > -1
+                );
+            });
         });
-        setRowsState(newData);
     }
 
-    const handleOnChangeField = (e, rowID) => {
-        const { name: fieldName, value } = e.target;
-        setEditedRow({
-            id: rowID,
-            [fieldName]: value
-        })
-    }
-
-    const handleCancelEditing = () => {
-        setIsEditMode(false);
-        setEditedRow(undefined);
-    }
-
-    const handleSaveRowChanges = () => {
-        setTimeout(() => {
-            setIsEditMode(false);
-            const newData = rowsState.map(row => {
-                if (row.id === editedRow.id) {
-                    if (editedRow.english) row.english = editedRow.english;
-                    if (editedRow.transcription) row.transcription = editedRow.transcription;
-                    if (editedRow.russian) row.russian = editedRow.russian;
-                    if (editedRow.tags) row.tags = editedRow.tags;
-                }
-                return row;
-            })
-            setRowsState(newData);
-            setEditedRow(undefined)
-        }, 1000)
-    }
 
     return (
-        <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 700 }} aria-label="customized table">
-                <TableHead>
-                    <TableRow>
-                        <StyledTableCell>№</StyledTableCell>
-                        <StyledTableCell align="center">English</StyledTableCell>
-                        <StyledTableCell align="center">Transcription</StyledTableCell>
-                        <StyledTableCell align="center">Russian translation</StyledTableCell>
-                        <StyledTableCell align="center">Сategory</StyledTableCell>
-                        <StyledTableCell align="center">Changes</StyledTableCell>
-                        <StyledTableCell align="center">Delete</StyledTableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {rowsState.map((row) => (
-                        <StyledTableRow key={row.id}>
-
-                            <StyledTableCell component="th" scope="row">
-                                {isEditMode && rowIDToEdit === row.id
-                                    ? <TextField align="center"
-                                        type='text'
-                                        defaultValue={editedRow ? editedRow.number : row.number}
-                                        id={row.id}
-                                        name='number'
-                                        onChange={(e) => handleOnChangeField(e, row.id)}
-                                    /> : row.number
-                                }
-                            </StyledTableCell>
-
-                            <StyledTableCell>
-                                {isEditMode && rowIDToEdit === row.id
-                                    ? <TextField align="center"
-                                        type='text'
-                                        defaultValue={editedRow ? editedRow.english : row.english}
-                                        id={row.id}
-                                        name='english'
-                                        onChange={(e) => handleOnChangeField(e, row.id)}
-                                    /> : row.english
-                                }
-                            </StyledTableCell>
-
-                            <StyledTableCell>
-                                {isEditMode && rowIDToEdit === row.id
-                                    ?
-                                    <TextField align="center" type='text'
-                                        defaultValue={editedRow ? editedRow.transcription : row.transcription}
-                                        id={row.id}
-                                        name='transcription'
-                                        onChange={(e) => handleOnChangeField(e, row.id)}
-                                    /> : row.transcription
-                                }
-                            </StyledTableCell>
-
-                            <StyledTableCell>
-                                {isEditMode && rowIDToEdit === row.id
-                                    ?
-                                    <TextField align="center" type='text'
-                                        defaultValue={editedRow ? editedRow.russian : row.russian}
-                                        id={row.id}
-                                        name='russian'
-                                        onChange={(e) => handleOnChangeField(e, row.id)}
-                                    /> : row.russian
-                                }
-                            </StyledTableCell>
-
-                            <StyledTableCell>
-                                {isEditMode && rowIDToEdit === row.id
-                                    ?
-                                    <TextField align="center" type='text'
-                                        defaultValue={editedRow ? editedRow.tags : row.tags}
-                                        id={row.id}
-                                        name='russian'
-                                        onChange={(e) => handleOnChangeField(e, row.id)}
-                                    /> : row.tags
-                                }
-                            </StyledTableCell>
-
-                            <StyledTableCell align="center">
-                                {isEditMode && rowIDToEdit === row.id
-                                    ? <Fab onClick={() => handleSaveRowChanges()} disabled={!editedRow}><LibraryAddIcon /></Fab>
-                                    : <Fab onClick={() => handleEdit(row.id)}><EditIcon /></Fab>}
-                            </StyledTableCell>
-
-                            <StyledTableCell align="center">
-                                {isEditMode && rowIDToEdit === row.id
-                                    ? <Fab onClick={() => handleCancelEditing()}><CancelIcon /></Fab >
-                                    : <Fab onClick={() => handleRemoveRow(row.id)}><DeleteIcon /></Fab >
-                                }
-                            </StyledTableCell>
-                        </StyledTableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer >
+        <Container>
+            <Box m={5}>
+                <Box component="form" sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' }, }} noValidate autoComplete="off">
+                    <TextField id="filled-search" label="Search for..." type="search"
+                        value={value} onChange={(event) => setValue(event.target.value)} />
+                </Box>
+                <TableContainer component={Paper}>
+                    <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                        <TableHead>
+                            <TableRow>
+                                <StyledTableCell>№</StyledTableCell>
+                                <StyledTableCell align="center">English</StyledTableCell>
+                                <StyledTableCell align="center">Transcription</StyledTableCell>
+                                <StyledTableCell align="center">Russian translation</StyledTableCell>
+                                <StyledTableCell align="center">Changes</StyledTableCell>
+                                <StyledTableCell align="center">Delete</StyledTableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {(rowsPerPage > 0
+                                ? search(words).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                : search(words)).map(editWord =>
+                                    <TableRowComp
+                                        word={editWord} key={editWord.id} createOrUpdate={createOrUpdate} deleteWord={deleteWord}
+                                    />
+                                )}
+                            {emptyRows > 0 && (
+                                <TableRow style={{ height: 53 * emptyRows }}>
+                                    <TableCell colSpan={6} />
+                                </TableRow>
+                            )}
+                        </TableBody>
+                        <TableFooter>
+                            <TableRow>
+                                <TablePagination
+                                    rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                                    colSpan={5}
+                                    count={words.length}
+                                    rowsPerPage={rowsPerPage}
+                                    page={page}
+                                    SelectProps={{
+                                        inputProps: {
+                                            'aria-label': 'rows per page',
+                                        },
+                                        native: true,
+                                    }}
+                                    onPageChange={handleChangePage}
+                                    onRowsPerPageChange={handleChangeRowsPerPage}
+                                    showFirstButton={true}
+                                    showLastButton={true}
+                                    ActionsComponent={TablePaginationActions}
+                                />
+                            </TableRow>
+                        </TableFooter>
+                    </Table>
+                </TableContainer>
+            </Box>
+        </Container>
     );
 }
 

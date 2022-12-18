@@ -1,5 +1,14 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway);
 
+.header{
+  width: 100%;
+  background: #3fa46a;
+  z-index: 2000;
+  position: fixed;
+}
+.header_fixed {
+  position: fixed;
+}
 .navbar{ 
     width: 100%;
     background: #3fa46a;

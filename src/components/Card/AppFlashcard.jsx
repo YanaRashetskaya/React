@@ -4,13 +4,13 @@ import CardFilling from './CardFilling';
 
 
 
-
-export default Flashcard = ({ wordsState, createData }) => {
+const Flashcard = ({ words }) => {
     return (
         <div className={styles.flashcard}>
             {
-                wordsState.map((word) => <CardFilling key={word.id} english={word.english} transcription={word.transcription} russian={word.russian} tags={word.tags} isSelected={word.isSelected}></CardFilling>)
+                words.map((word) => <CardFilling key={word.id} english={word.english} transcription={word.transcription} russian={word.russian} tags={word.tags} isSelected={word.isSelected}></CardFilling>)
             }
         </div>
     )
 }
+export default Flashcard;

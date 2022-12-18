@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 export default function AppHeader() {
     return (
-        <div className={styles.scroll}>
+        <div className={styles.header}>
             <nav
                 className={styles.navbar}>
                 <ul className={styles.header__nav__logo}>

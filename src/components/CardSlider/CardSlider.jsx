@@ -5,7 +5,8 @@ import CardFilling from '../Card/CardFilling';
 
 
 
-const CardSlider = ({ wordsState, createData }) => {
+
+const CardSlider = ({ words }) => {
     const [currentItem, setPosition] = useState(0);
     const [learnedWordsTotal, setLearnedWordsTotal] = useState(0);
     const [pressed, setPressed] = useState(false);
@@ -27,7 +28,7 @@ const CardSlider = ({ wordsState, createData }) => {
             setPosition(currentItem - 1);
     }
 
-    if (currentItem >= wordsState.length) {
+    if (currentItem >= words.length) {
         return (
             <div className={styles.endCard}>
                 <div>Поздравляем,Вы изучили все слова!</div>
@@ -40,17 +41,18 @@ const CardSlider = ({ wordsState, createData }) => {
                 showPrev={showPrev}
                 showNext={showNext}
                 number={currentItem + 1}
-                total={wordsState.length}
+                total={words.length}
                 learned={learnedWordsTotal}
-                children={wordsState.map((word) => <CardFilling
+                children={words.map((word) => <CardFilling
                     pressed={pressed}
                     show={handleChange}
                     id={word[currentItem].id}
                     english={word[currentItem].english}
                     transcription={word[currentItem].transcription}
                     russian={word[currentItem].russian}
-                    tags={word[currentItem].tags} />)}>
-            </CardBox>
+                    tags={word[currentItem].tags} />)
+                }>
+            </CardBox >
         )
     }
 }
