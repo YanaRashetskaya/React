@@ -46,11 +46,11 @@ const CardSlider = ({ words }) => {
                 children={words.map((word) => <CardFilling
                     pressed={pressed}
                     show={handleChange}
-                    id={word[currentItem].id}
-                    english={word[currentItem].english}
-                    transcription={word[currentItem].transcription}
-                    russian={word[currentItem].russian}
-                    tags={word[currentItem].tags} />)
+                    id={word[currentItem]?.id}
+                    english={word[currentItem]?.english}
+                    transcription={word[currentItem]?.transcription}
+                    russian={word[currentItem]?.russian}
+                    tags={word[currentItem]?.tags} />)
                 }>
             </CardBox >
         )
