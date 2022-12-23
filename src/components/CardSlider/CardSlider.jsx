@@ -10,7 +10,6 @@ const CardSlider = ({ words }) => {
     const [currentItem, setPosition] = useState(0);
     const [learnedWordsTotal, setLearnedWordsTotal] = useState(0);
     const [pressed, setPressed] = useState(false);
-
     const handleChange = () => {
         setPressed(!pressed)
     }

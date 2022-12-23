@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {
   BrowserRouter,
   Routes,
   Route
 } from "react-router-dom";
-import styles from './App.css';
+import  './App.css';
 import AppHeader from '../src/components/Header/AppHeader';
 import AppFooter from '../src/components/Footer/AppFooter';
 import AppMain from '../src/components/MainPage/AppMain';
@@ -12,6 +12,7 @@ import CardSlider from './components/CardSlider/CardSlider';
 import NotFound from './components/NotFound/NotFound';
 import EditableTable from './components/WordList/EditableTable';
 import initialWords from './data'
+import { ThemeContext } from './components/providers/ThemeProvider';
 
 
 
@@ -46,11 +47,14 @@ const deleteWord = (wordID) => {
   setWords(words.filter(word => word.id !== wordID));
 }
 
+const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
-    <BrowserRouter>
-    <AppHeader/>
-    <main  className={styles.main}>
+  
+      <BrowserRouter> 
+  <div className={`app-${theme}`}>
+    <AppHeader changeTheme={toggleTheme}/>
+    <main  className='main'>
     <Routes>
               <Route path="/main" element={<AppMain words={words} 
                             createOrUpdate={createOrUpdateWord} 
@@ -65,7 +69,8 @@ const deleteWord = (wordID) => {
               <Route path="*" element={<NotFound/>}/>
     </Routes>
     </main> 
-    <footer className={styles.footer}><AppFooter/></footer>
+    <footer className='footer'><AppFooter/></footer>
+    </div> 
     </BrowserRouter>
   );
 }

@@ -1,12 +1,14 @@
 import React from "react";
 import styles from './AppHeader.module.scss';
 import logo from '../../assets/icon/logo2.png'
-
 import { Link } from "react-router-dom";
+import Button from '../common/ButtonTheme'
 
-export default function AppHeader() {
+
+
+export default function AppHeader({ changeTheme }) {
     return (
-        <div className={styles.header}>
+        <header className={styles.header}>
             <nav
                 className={styles.navbar}>
                 <ul className={styles.header__nav__logo}>
@@ -22,6 +24,7 @@ export default function AppHeader() {
                     <Link className={styles.link} to="/game">Game</Link>
                 </ul>
             </nav>
-        </div>
+            <Button changeTheme={changeTheme} />
+        </header>
     );
 }

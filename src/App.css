@@ -4,3 +4,10 @@
 .main {
   padding-top: 208px;
 }
+.app-dark {
+  background: #282c35;
+}
+
+.app-light{
+  background: #def1db;
+}
